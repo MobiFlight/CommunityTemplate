@@ -25,18 +25,17 @@ def copy_fw_files (source, target, env):
     if os.path.exists("./_build/" + custom_device_folder) == False:
         os.makedirs("./_build/" + custom_device_folder + "/Community/firmware")
         shutil.copytree(custom_device_folder + "/Community", "./_build/" + custom_device_folder + "/Community", dirs_exist_ok=True)
-        print("Creating Folder and copying community folder")
+        print("Creating /_build folder")
     
     if fw_file_name[-3:] == "bin":
         fw_file_name=fw_file_name[0:-3] + "uf2"
 
+    print("Copying community folder")
     shutil.copy(fw_file_name, "./_build/" + custom_device_folder + "/Community/firmware")
-    createCommunityZipFile(source, target, env)
-
-def createCommunityZipFile(source, target, env):
     original_folder_path = "./_build/" + custom_device_folder + "/Community"
     zip_file_path = './_dist/' + community_project + '_' + firmware_version + '.zip'
     new_folder_in_zip = community_folder
+    print("Creating zip file")
     createZIP(original_folder_path, zip_file_path, new_folder_in_zip)
 
 def createZIP(original_folder_path, zip_file_path, new_folder_name):
@@ -53,5 +52,3 @@ def createZIP(original_folder_path, zip_file_path, new_folder_name):
 
 env.AddPostAction("$BUILD_DIR/${PROGNAME}.hex", copy_fw_files)
 env.AddPostAction("$BUILD_DIR/${PROGNAME}.bin", copy_fw_files)
-#env.AddPostAction("checkprogsize", createCommunityZipFile)
-#env.AddCustomTarget("create_community_zip", None, createCommunityZipFile)
