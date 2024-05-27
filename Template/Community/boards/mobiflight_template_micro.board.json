@@ -29,7 +29,17 @@
     "FriendlyName": "Arduino Pro Micro",
     "LatestFirmwareVersion": "2.5.1",
     "MobiFlightType": "MobiFlight Template Micro",
-    "ResetFirmwareFile": "reset.arduino_promicro_1_0_2.hex"
+    "ResetFirmwareFile": "reset.arduino_promicro_1_0_2.hex",
+    "CustomDeviceTypes": [
+      "MOBIFLIGHT_TEMPLATE",
+      "MOBIFLIGHT_TEMPLATE2"
+    ],
+    "Community": {
+      "Project": "Your Project",
+      "Website": "https://YourWebsite.com",
+      "Docs": "https://YourWebsite.com",
+      "Support": "https://YourWebsite.com"
+    }
   },
   "ModuleLimits": {
     "MaxAnalogInputs": 9,
