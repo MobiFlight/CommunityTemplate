@@ -24,7 +24,7 @@
   "Info": {
     "CanInstallFirmware": true,
     "CanResetBoard": true,
-    "FirmwareBaseName": "mobiflight_micro",
+    "FirmwareBaseName": "mobiflight_template_micro",
     "FirmwareExtension": "hex",
     "FriendlyName": "Arduino Pro Micro",
     "LatestFirmwareVersion": "2.5.1",

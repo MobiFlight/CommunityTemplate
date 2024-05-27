@@ -30,7 +30,7 @@
   "Info": {
     "CanInstallFirmware": true,
     "CanResetBoard": true,
-    "FirmwareBaseName": "mobiflight_nano",
+    "FirmwareBaseName": "mobiflight_template_nano",
     "FirmwareExtension": "hex",
     "FriendlyName": "Arduino Nano",
     "LatestFirmwareVersion": "2.5.1",
