@@ -35,9 +35,9 @@ void MyCustomClass::set(int16_t messageID, char *setPoint)
         Each messageID has it's own value
         check for the messageID and define what to do.
         Important Remark!
-        MessageID == -1 will be send from the connector when Mobiflight is closed
-        Put in your code to shut down your custom device (e.g. clear a display)
-        MessageID == -2 will be send from the connector when PowerSavingMode is entered
+        MessageID == -2 will be send from the board when PowerSavingMode is set
+            Message will be "0" for leaving and "1" for entering PowerSavingMode
+        MessageID == -1 will be send from the connector when Connector stops running
         Put in your code to enter this mode (e.g. clear a display)
 
     ********************************************************************************** */
