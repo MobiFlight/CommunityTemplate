@@ -29,7 +29,7 @@ extern MFEEPROM MFeeprom;
 #define MEMLEN_STRING_BUFFER 40
 
 // reads a string from EEPROM or Flash at given address which is '.' terminated and saves it to the buffer
-bool MFCustomDevice::getStringFromEEPROM(uint16_t addrMem, char *buffer, bool configFromFlash)
+bool MFCustomDevice::getStringFromMem(uint16_t addrMem, char *buffer, bool configFromFlash)
 {
     char     temp     = 0;
     uint8_t  counter  = 0;
@@ -84,7 +84,7 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
         The string get's NOT stored as this would need a lot of RAM, instead a variable
         is used to store the type
     ********************************************************************************** */
-    getStringFromEEPROM(adrType, parameter, configFromFlash);
+    getStringFromMem(adrType, parameter, configFromFlash);
     if (strcmp(parameter, "MOBIFLIGHT_TEMPLATE") == 0)
         _customType = MY_CUSTOM_DEVICE_1;
     if (strcmp(parameter, "MOBIFLIGHT_TEMPLATE2") == 0)
@@ -103,7 +103,7 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
             Read the pins from the EEPROM or Flash, copy them into a buffer
             If you have set '"isI2C": true' in the device.json file, the first value is the I2C address
         ********************************************************************************************** */
-        getStringFromEEPROM(adrPin, parameter, configFromFlash);
+        getStringFromMem(adrPin, parameter, configFromFlash);
         /* **********************************************************************************************
             Split the pins up into single pins. As the number of pins could be different between
             multiple devices, it is done here.
@@ -118,7 +118,7 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
         /* **********************************************************************************
             Read the configuration from the EEPROM or Flash, copy it into a buffer.
         ********************************************************************************** */
-        getStringFromEEPROM(adrConfig, parameter, configFromFlash);
+        getStringFromMem(adrConfig, parameter, configFromFlash);
         /* **********************************************************************************
             Split the config up into single parameter. As the number of parameters could be
             different between multiple devices, it is done here.
@@ -160,7 +160,7 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
             Read the pins from the EEPROM or Flash, copy them into a buffer
             If you have set '"isI2C": true' in the device.json file, the first value is the I2C address
         ********************************************************************************************** */
-        getStringFromEEPROM(adrPin, parameter, configFromFlash);
+        getStringFromMem(adrPin, parameter, configFromFlash);
         /* **********************************************************************************************
             split the pins up into single pins, as the number of pins could be different between
             multiple devices, it is done here
@@ -175,7 +175,7 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
         /* **********************************************************************************
             Read the configuration from the EEPROM or Flash, copy it into a buffer.
         ********************************************************************************** */
-        getStringFromEEPROM(adrConfig, parameter, configFromFlash);
+        getStringFromMem(adrConfig, parameter, configFromFlash);
         /* **********************************************************************************
             split the config up into single parameter. As the number of parameters could be
             different between multiple devices, it is done here.

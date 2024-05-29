@@ -18,7 +18,7 @@ public:
     void set(int16_t messageID, char *setPoint);
 
 private:
-    bool           getStringFromEEPROM(uint16_t addreeprom, char *buffer, bool configFromFlash);
+    bool           getStringFromMem(uint16_t addreeprom, char *buffer, bool configFromFlash);
     bool           _initialized = false;
     MyCustomClass *_mydevice;
     uint8_t        _pin1, _pin2, _pin3;
