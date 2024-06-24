@@ -4,7 +4,7 @@
 ## Prerequisites
 * MobiFlight firmware development is done with [VSCode](https://code.visualstudio.com/) and the [PlatformIO](https://platformio.org) extension. 
 Make sure to install both.
-* **Create** a new reposority by using the [Community Template repository](https://github.com/MobiFlight/CommunityDevice_Template)*
+* **Create** a new reposority by using the [Community Template repository](https://github.com/MobiFlight/CommunityTemplate)*
 
 Follow the next steps carefully!
 
