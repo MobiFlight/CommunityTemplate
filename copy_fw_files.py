@@ -18,6 +18,7 @@ custom_source_folder = env.GetProjectOption('custom_source_folder', "")
 # Get the foldername inside the zip file from the build environment.
 community_folder = env.GetProjectOption('custom_community_folder', "")
 
+platform = env.BoardConfig().get("platform", {})
 
 def copy_fw_files (source, target, env):
     fw_file_name=str(target[0])
@@ -27,7 +28,7 @@ def copy_fw_files (source, target, env):
         shutil.copytree(custom_source_folder + "/Community", "./_build/" + custom_source_folder + "/Community", dirs_exist_ok=True)
         print("Creating /_build folder")
     
-    if fw_file_name[-3:] == "bin":
+    if platform == "raspberrypi":
         fw_file_name=fw_file_name[0:-3] + "uf2"
 
     print("Copying community folder")
