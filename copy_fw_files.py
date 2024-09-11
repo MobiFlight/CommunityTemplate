@@ -16,7 +16,7 @@ community_project = env.GetProjectOption('custom_community_project', "")
 custom_source_folder = env.GetProjectOption('custom_source_folder', "")
 
 # Get the foldername inside the zip file from the build environment.
-community_folder = env.GetProjectOption('custom_community_folder', "")
+zip_filename = env.GetProjectOption('custom_zip_filename', "")
 
 platform = env.BoardConfig().get("platform", {})
 
@@ -34,10 +34,9 @@ def copy_fw_files (source, target, env):
     print("Copying community folder")
     shutil.copy(fw_file_name, "./_build/" + custom_source_folder + "/Community/firmware")
     original_folder_path = "./_build/" + custom_source_folder + "/Community"
-    zip_file_path = './_dist/' + community_project + '_' + firmware_version + '.zip'
-    new_folder_in_zip = community_folder
+    zip_file_path = './_dist/' + zip_filename + '_' + firmware_version + '.zip'
     print("Creating zip file")
-    createZIP(original_folder_path, zip_file_path, new_folder_in_zip)
+    createZIP(original_folder_path, zip_file_path, community_project)
 
 def createZIP(original_folder_path, zip_file_path, new_folder_name):
     if os.path.exists("./_dist") == False:
