@@ -33,6 +33,12 @@ def copy_fw_files (source, target, env):
 
     print("Copying community folder")
     shutil.copy(fw_file_name, "./_build/" + custom_source_folder + "/Community/firmware")
+    # set FW version within boad.json files
+    replacements = {
+        "0.0.1": firmware_version
+    }
+    for file_path in build_path_json.rglob("*.json"):
+        replace_in_file(file_path, replacements)
     original_folder_path = "./_build/" + custom_source_folder + "/Community"
     zip_file_path = './_dist/' + zip_filename + '_' + firmware_version + '.zip'
     print("Creating zip file")
@@ -49,6 +55,16 @@ def createZIP(original_folder_path, zip_file_path, new_folder_name):
                 # Add the file to the ZIP file
                 zipf.write(os.path.join(root, file), new_path)
 
+def replace_in_file(file_path, replacements):
+    """Replace all keys in `replacements` with their values in the given file."""
+    with open(file_path, "r", encoding="utf-8") as file:
+        content = file.read()
+
+    for old, new in replacements.items():
+        content = content.replace(old, new)
+
+    with open(file_path, "w", encoding="utf-8") as file:
+        file.write(content)
 
 env.AddPostAction("$BUILD_DIR/${PROGNAME}.hex", copy_fw_files)
 env.AddPostAction("$BUILD_DIR/${PROGNAME}.bin", copy_fw_files)
