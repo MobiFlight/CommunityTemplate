@@ -26,6 +26,13 @@ def copy_fw_files (source, target, env):
     if os.path.exists("./_build/" + custom_source_folder) == False:
         os.makedirs("./_build/" + custom_source_folder + "/Community/firmware")
         shutil.copytree(custom_source_folder + "/Community", "./_build/" + custom_source_folder + "/Community", dirs_exist_ok=True)
+        # set FW version within boad.json files
+        replacements = {
+            "0.0.1": firmware_version
+        }
+        build_path_json = Path("./_build/" + custom_source_folder + "/Community/boards")
+        for file_path in build_path_json.rglob("*.json"):
+            replace_in_file(file_path, replacements)
         print("Creating /_build folder")
     
     if platform == "raspberrypi":
@@ -33,12 +40,6 @@ def copy_fw_files (source, target, env):
 
     print("Copying community folder")
     shutil.copy(fw_file_name, "./_build/" + custom_source_folder + "/Community/firmware")
-    # set FW version within boad.json files
-    replacements = {
-        "0.0.1": firmware_version
-    }
-    for file_path in build_path_json.rglob("*.json"):
-        replace_in_file(file_path, replacements)
     original_folder_path = "./_build/" + custom_source_folder + "/Community"
     zip_file_path = './_dist/' + zip_filename + '_' + firmware_version + '.zip'
     print("Creating zip file")
