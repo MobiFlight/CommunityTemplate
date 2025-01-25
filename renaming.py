@@ -113,7 +113,7 @@ def main():
 
     # Rename JSON files in boards and devices
     rename_files_and_directories(community_path / "boards", {
-        "mobiflight_template": device_name,
+        "mobiflight_template": f"{prefix}_{device_name}",
     })
     rename_files_and_directories(community_path / "devices", {
         "mobiflight_template": f"{prefix}_{device_name}",
