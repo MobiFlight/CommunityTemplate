@@ -34,7 +34,7 @@
     "FirmwareExtension": "hex",
     "FriendlyName": "Mobiflight Template Nano",
     "LatestFirmwareVersion": "0.0.1",
-    "MobiFlightType": "MobiFlight Template Nano",
+    "MobiFlightType": "Mobiflight Template Nano",
     "ResetFirmwareFile": "reset.arduino_uno_1_0_2.hex",
     "CustomDeviceTypes": [
       "MOBIFLIGHT_TEMPLATE",

@@ -28,7 +28,7 @@
     "FirmwareExtension": "hex",
     "FriendlyName": "Mobiflight Template Micro",
     "LatestFirmwareVersion": "0.0.1",
-    "MobiFlightType": "MobiFlight Template Micro",
+    "MobiFlightType": "Mobiflight Template Micro",
     "ResetFirmwareFile": "reset.arduino_promicro_1_0_2.hex",
     "CustomDeviceTypes": [
       "MOBIFLIGHT_TEMPLATE",
