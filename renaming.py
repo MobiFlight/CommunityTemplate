@@ -1,3 +1,14 @@
+#
+#   This renaming script is based on the excellent work from ccrawford
+#   All credits are going to him!!
+#
+#   His original repo can be found under https://github.com/ccrawford/MobiFlight-Custom-Device-Setup/
+#   Some slight adaptions has been made to reflect the latest status of the repo.
+#   New Device Name and author are asked from the python script
+#   Just start it by 'python renaming.py' into the terminal window
+#
+
+
 import os
 import shutil
 import sys
