@@ -82,6 +82,7 @@ def main():
         "YourProject": device_name,
         "MOBIFLIGHT_TEMPLATE": device_name,
         "env_template": f"env_{device_name}",
+        "YourProject": f"{prefix}_{device_name}"
     }
 
     # Update content in relevant files
