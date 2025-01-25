@@ -116,7 +116,7 @@ def main():
         "mobiflight_template": device_name,
     })
     rename_files_and_directories(community_path / "devices", {
-        "mobiflight.template": f"{prefix.lower()}.{device_name.lower()}",
+        "mobiflight_template": f"{prefix}_{device_name}",
     })
 
 if __name__ == "__main__":
