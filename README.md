@@ -11,9 +11,10 @@ Follow the next steps carefully!
 
 ## Preparing the firmware
 * Open a terminal window within PlatformIO if it's not already opened
-Picture OpenTerminalWindow
+![image](https://github.com/user-attachments/assets/871652b5-eab5-4709-af93-2338cd526e75)
 * type `python renaming.py` into the terminal window and answer the 2 questions
-Picture RenameScript
+![image](https://github.com/user-attachments/assets/af99e0ca-5953-4531-a25d-a857e7d3cf06)
+
 
 ### Testing
 Now it's a good point to test everything you have set up.
