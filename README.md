@@ -17,7 +17,7 @@ Follow the next steps carefully!
 
 ![image](https://github.com/user-attachments/assets/bc9e553f-f55e-48cd-8374-fb27e9f1ba43)
 
-
+All required files and folders get renamed according your naming.
 
 ### Testing
 Now it's a good point to test everything you have set up.
