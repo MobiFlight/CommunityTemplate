@@ -3,6 +3,8 @@
 #   All credits are going to him!!
 #
 #   His original repo can be found under https://github.com/ccrawford/MobiFlight-Custom-Device-Setup/
+#   And on Discord see: https://discord.com/channels/608690978081210392/1331350567754403840
+#
 #   Some slight adaptions has been made to reflect the latest status of the repo.
 #   New Device Name and author are asked from the python script
 #   Just start it by 'python renaming.py' into the terminal window
