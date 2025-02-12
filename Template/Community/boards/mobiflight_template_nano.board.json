@@ -32,9 +32,9 @@
     "CanResetBoard": true,
     "FirmwareBaseName": "mobiflight_template_nano",
     "FirmwareExtension": "hex",
-    "FriendlyName": "Arduino Nano",
-    "LatestFirmwareVersion": "2.5.1",
-    "MobiFlightType": "MobiFlight Template Nano",
+    "FriendlyName": "Mobiflight Template Nano",
+    "LatestFirmwareVersion": "0.0.1",
+    "MobiFlightType": "Mobiflight Template Nano",
     "ResetFirmwareFile": "reset.arduino_uno_1_0_2.hex",
     "CustomDeviceTypes": [
       "MOBIFLIGHT_TEMPLATE",
