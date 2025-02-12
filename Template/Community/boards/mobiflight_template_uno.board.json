@@ -29,11 +29,11 @@
   "Info": {
     "CanInstallFirmware": true,
     "CanResetBoard": true,
-    "FriendlyName": "Arduino Uno",
     "FirmwareBaseName": "mobiflight_template_uno",
     "FirmwareExtension": "hex",
-    "LatestFirmwareVersion": "2.5.1",
-    "MobiFlightType": "MobiFlight Template Uno",
+    "FriendlyName": "Mobiflight Template Uno",
+    "LatestFirmwareVersion": "0.0.1",
+    "MobiFlightType": "Mobiflight Template Uno",
     "ResetFirmwareFile": "reset.arduino_uno_1_0_2.hex",
     "CustomDeviceTypes": [
       "MOBIFLIGHT_TEMPLATE",
