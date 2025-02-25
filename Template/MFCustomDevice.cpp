@@ -2,7 +2,7 @@
 #include "commandmessenger.h"
 #include "allocateMem.h"
 #include "MFEEPROM.h"
-#ifdef HAS_CONFIG_IN_FLASH
+#if defined(HAS_CONFIG_IN_FLASH)
 #include "MFCustomDevicesConfig.h"
 #else
 const char CustomDeviceConfig[] PROGMEM = {};
