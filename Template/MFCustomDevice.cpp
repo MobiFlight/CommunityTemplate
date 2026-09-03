@@ -67,9 +67,9 @@ MFCustomDevice::MFCustomDevice()
     will be called
 ********************************************************************************** */
 
-void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig, bool configFromFlash)
+bool MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig, bool configFromFlash)
 {
-    if (adrPin == 0) return;
+    if (adrPin == 0) return false;
 
     /* **********************************************************************************
         Do something which is required to setup your custom device
@@ -98,7 +98,7 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
         if (!mem) {
             // Error Message to Connector
             cmdMessenger.sendCmd(kStatus, F("Custom Device does not fit in Memory"));
-            return;
+            return false;
         }
         /* **********************************************************************************************
             Read the pins from the EEPROM or Flash, copy them into a buffer
@@ -155,7 +155,7 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
         if (!mem) {
             // Error Message to Connector
             cmdMessenger.sendCmd(kStatus, F("Custom Device does not fit in Memory"));
-            return;
+            return false;
         }
 
         /* **********************************************************************************************
@@ -208,6 +208,7 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
     } else {
         cmdMessenger.sendCmd(kStatus, F("Custom Device is not supported by this firmware version"));
     }
+    return true;
 }
 
 /* **********************************************************************************

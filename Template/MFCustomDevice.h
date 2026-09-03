@@ -12,7 +12,7 @@ class MFCustomDevice
 {
 public:
     MFCustomDevice();
-    void attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig, bool configFromFlash = false);
+    bool attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig, bool configFromFlash = false);
     void detach();
     void update();
     void set(int16_t messageID, char *setPoint);
