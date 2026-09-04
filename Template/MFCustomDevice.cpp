@@ -67,9 +67,9 @@ MFCustomDevice::MFCustomDevice()
     will be called
 ********************************************************************************** */
 
-void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig, bool configFromFlash)
+bool MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfig, bool configFromFlash)
 {
-    if (adrPin == 0) return;
+    if (adrPin == 0) return false;
 
     /* **********************************************************************************
         Do something which is required to setup your custom device
@@ -84,11 +84,16 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
         The string get's NOT stored as this would need a lot of RAM, instead a variable
         is used to store the type
     ********************************************************************************** */
-    getStringFromMem(adrType, parameter, configFromFlash);
+    if (!getStringFromMem(adrType, parameter, configFromFlash))
+        return false;
     if (strcmp(parameter, "MOBIFLIGHT_TEMPLATE") == 0)
         _customType = MY_CUSTOM_DEVICE_1;
-    if (strcmp(parameter, "MOBIFLIGHT_TEMPLATE2") == 0)
+    else if (strcmp(parameter, "MOBIFLIGHT_TEMPLATE2") == 0)
         _customType = MY_CUSTOM_DEVICE_2;
+    else {
+        cmdMessenger.sendCmd(kStatus, F("Custom Device is not supported by this firmware version"));
+        return false;
+    }
 
     if (_customType == MY_CUSTOM_DEVICE_1) {
         /* **********************************************************************************
@@ -98,28 +103,34 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
         if (!mem) {
             // Error Message to Connector
             cmdMessenger.sendCmd(kStatus, F("Custom Device does not fit in Memory"));
-            return;
+            return false;
         }
         /* **********************************************************************************************
             Read the pins from the EEPROM or Flash, copy them into a buffer
             If you have set '"isI2C": true' in the device.json file, the first value is the I2C address
         ********************************************************************************************** */
-        getStringFromMem(adrPin, parameter, configFromFlash);
+        if (!getStringFromMem(adrPin, parameter, configFromFlash))
+            return false;
+
         /* **********************************************************************************************
             Split the pins up into single pins. As the number of pins could be different between
             multiple devices, it is done here.
         ********************************************************************************************** */
         params = strtok_r(parameter, "|", &p);
+        if (!params) return false;
         _pin1  = atoi(params);
         params = strtok_r(NULL, "|", &p);
+        if (!params) return false;
         _pin2  = atoi(params);
         params = strtok_r(NULL, "|", &p);
+        if (!params) return false;
         _pin3  = atoi(params);
 
         /* **********************************************************************************
             Read the configuration from the EEPROM or Flash, copy it into a buffer.
         ********************************************************************************** */
-        getStringFromMem(adrConfig, parameter, configFromFlash);
+        if (!getStringFromMem(adrConfig, parameter, configFromFlash))
+            return false;
         /* **********************************************************************************
             Split the config up into single parameter. As the number of parameters could be
             different between multiple devices, it is done here.
@@ -131,8 +142,10 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
         uint16_t Parameter1;
         char    *Parameter2;
         params     = strtok_r(parameter, "|", &p);
+        if (!params) return false;
         Parameter1 = atoi(params);
         params     = strtok_r(NULL, "|", &p);
+        if (!params) return false;
         Parameter2 = params;
 
         /* **********************************************************************************
@@ -155,29 +168,35 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
         if (!mem) {
             // Error Message to Connector
             cmdMessenger.sendCmd(kStatus, F("Custom Device does not fit in Memory"));
-            return;
+            return false;
         }
 
         /* **********************************************************************************************
             Read the pins from the EEPROM or Flash, copy them into a buffer
             If you have set '"isI2C": true' in the device.json file, the first value is the I2C address
         ********************************************************************************************** */
-        getStringFromMem(adrPin, parameter, configFromFlash);
+        if (!getStringFromMem(adrPin, parameter, configFromFlash))
+            return false;
+
         /* **********************************************************************************************
             split the pins up into single pins, as the number of pins could be different between
             multiple devices, it is done here
         ********************************************************************************************** */
         params = strtok_r(parameter, "|", &p);
+        if (!params) return false;
         _pin1  = atoi(params);
         params = strtok_r(NULL, "|", &p);
+        if (!params) return false;
         _pin2  = atoi(params);
         params = strtok_r(NULL, "|", &p);
+        if (!params) return false;
         _pin3  = atoi(params);
 
         /* **********************************************************************************
             Read the configuration from the EEPROM or Flash, copy it into a buffer.
         ********************************************************************************** */
-        getStringFromMem(adrConfig, parameter, configFromFlash);
+        if (!getStringFromMem(adrConfig, parameter, configFromFlash))
+            return false;
         /* **********************************************************************************
             split the config up into single parameter. As the number of parameters could be
             different between multiple devices, it is done here.
@@ -189,8 +208,10 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
         uint16_t Parameter1;
         char    *Parameter2;
         params     = strtok_r(parameter, "|", &p);
+        if (!params) return false;
         Parameter1 = atoi(params);
         params     = strtok_r(NULL, "|", &p);
+        if (!params) return false;
         Parameter2 = params;
 
         /* **********************************************************************************
@@ -205,9 +226,9 @@ void MFCustomDevice::attach(uint16_t adrPin, uint16_t adrType, uint16_t adrConfi
         // or this function could be called from the custom constructor or attach() function
         _mydevice->begin();
         _initialized = true;
-    } else {
-        cmdMessenger.sendCmd(kStatus, F("Custom Device is not supported by this firmware version"));
-    }
+    } 
+
+    return true;
 }
 
 /* **********************************************************************************
